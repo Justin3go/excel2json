@@ -2,7 +2,17 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  app: {
+    head: {
+      title: 'Excel2json Tool',
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/logo.png' }
+      ],
+      meta: [
+        { name: 'description', content: 'Converting Excel to Front-end JSON Configuration Code' }
+      ],
+    }
+  },
   build: {
     transpile: ['vuetify'],
   },

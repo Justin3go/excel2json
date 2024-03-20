@@ -17,7 +17,7 @@
 		</v-file-input>
 		<div class="d-flex">
 			<div style="width: 50vw;">
-				<div class="d-flex justify-space-between">
+				<div class="d-flex justify-space-between mb-1">
 					<span class='text-h6'>Merge Cells</span>
           <v-snackbar :timeout="2000">
             <template #activator="{ props }">
@@ -26,7 +26,7 @@
             copied to clipboard.
           </v-snackbar>
 				</div>
-				<v-sheet class="scrollable" height="80vh" width="100%" border>
+				<v-sheet class="scrollable" height="calc(100vh - 250px)" width="100%" border>
 					<vue-json-pretty
 						:data="mergeResult"
 						showIcon
@@ -36,7 +36,7 @@
 				</v-sheet>
 			</div>
 			<div style="width: 50vw;">
-				<div class="d-flex justify-space-between">
+				<div class="d-flex justify-space-between mb-1">
 					<span class='text-h6'>Table Data</span>
           <v-snackbar :timeout="2000">
             <template #activator="{ props }">
@@ -45,7 +45,7 @@
             copied to clipboard.
           </v-snackbar>
 				</div>
-				<v-sheet class="scrollable" height="80vh" width="100%" border>
+				<v-sheet class="scrollable" height="calc(100vh - 250px)" width="100%" border>
 					<vue-json-pretty
 						:data="tableResult"
 						showIcon
@@ -67,6 +67,13 @@ const file = ref();
 const mergeResult = ref();
 const tableResult = ref();
 const workbook = new Excel.Workbook();
+
+useSeoMeta({
+	ogTitle: "Excel2json Tool",
+	ogDescription: `Converting Excel to Front-end JSON Configuration Code`,
+	ogImage: "https://bug404.dev/logo.jpg",
+	twitterCard: "summary",
+});
 
 watch(file, async (newVal) => {
 	if (!newVal && !newVal[0]) {
