@@ -31,6 +31,9 @@ devDependencies:
   vite-plugin-vuetify:
     specifier: ^2.0.3
     version: 2.0.3(vite@5.1.6)(vue@3.4.21)(vuetify@3.5.9)
+  vue-gtag-next:
+    specifier: ^1.14.0
+    version: 1.14.0(vue@3.4.21)
   vuetify:
     specifier: ^3.5.9
     version: 3.5.9(typescript@5.4.2)(vite-plugin-vuetify@2.0.3)(vue@3.4.21)
@@ -6401,6 +6404,14 @@ packages:
   /vue-devtools-stub@0.1.0:
     resolution: {integrity: sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==}
     dev: false
+
+  /vue-gtag-next@1.14.0(vue@3.4.21):
+    resolution: {integrity: sha512-iJl+cOG2GU5NuxqzSSIpt03WVOvZqyKB9TOy7d55KiuvRklcnb2nlqxW5B/a3/sbIt7fla+XEkRyMCcoz0zAHw==}
+    peerDependencies:
+      vue: ^3.0.0-rc.11
+    dependencies:
+      vue: 3.4.21(typescript@5.4.2)
+    dev: true
 
   /vue-json-pretty@2.3.0(vue@3.4.21):
     resolution: {integrity: sha512-iBul6Xg7vZfMV2MQC/gGtzbyg8FLk6cJ8KG91f37UEkQyXqHg91VQJ24bDBXNVuOSP04BUKxWagD3V2N/WEy0g==}
