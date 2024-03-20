@@ -10,8 +10,15 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "exceljs": "^4.4.0",
     "nuxt": "^3.11.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.2",
+    "vite-plugin-vuetify": "^2.0.3",
+    "vuetify": "^3.5.9"
   }
 }
