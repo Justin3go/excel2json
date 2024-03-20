@@ -2,38 +2,47 @@
 	<div>
 		<v-file-input
 			v-model="file"
-			class="mx-12"
+			class="mt-8 mx-12"
 			chips
-			label="File input"
+			label="upload your excel file"
 			placeholder="Upload your documents"
-			prepend-icon="mdi-paperclip"
+			prepend-icon=""
+			variant="outlined"
 		>
 		</v-file-input>
-		<div>{{ mergeResult }}</div>
-		<div>{{ tableResult }}</div>
+		<div class="d-flex">
+			<v-sheet class="scrollable" height="80vh" width="50vw" border>
+				<vue-json-pretty :data="mergeResult" showIcon showLineNumber showLength></vue-json-pretty>
+			</v-sheet>
+			<v-sheet class="scrollable" height="80vh" width="50vw" border>
+				<vue-json-pretty :data="tableResult" showIcon showLineNumber showLength></vue-json-pretty>
+			</v-sheet>
+		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
 import Excel from "exceljs";
+import VueJsonPretty from "vue-json-pretty";
+import "vue-json-pretty/lib/styles.css";
 
 const file = ref();
-const mergeResult = ref("No file selected");
-const tableResult = ref("No file selected");
+const mergeResult = ref();
+const tableResult = ref();
 const workbook = new Excel.Workbook();
 
 watch(file, async (newVal) => {
 	if (!newVal) {
-		mergeResult.value = "No file selected";
+		mergeResult.value = null;
 		return;
 	}
 
 	await workbook.xlsx.load(newVal[0]);
-	workbook.eachSheet(function (worksheet, sheetId) {
+	workbook.eachSheet(function (worksheet) {
 		// @ts-ignore
-		mergeResult.value = JSON.stringify(convertMergeFormat(worksheet._merges));
+		mergeResult.value = convertMergeFormat(worksheet._merges);
 		// @ts-ignore
-    tableResult.value = JSON.stringify(convertTableFormat(worksheet._rows));
+		tableResult.value = convertTableFormat(worksheet._rows);
 	});
 });
 
@@ -53,8 +62,18 @@ const convertMergeFormat = (data: any) => {
 };
 
 const convertTableFormat = (data: any) => {
-	return data.map((item: any) => item.values);
+	return data.map((item: any) =>
+		Object.fromEntries(
+			item.values
+				.map((value: any, index: number) => [`excel2json_key_${index}`, value])
+				.filter(Boolean)
+		)
+	);
 };
 </script>
 
-<style></style>
+<style scoped>
+.scrollable {
+	overflow: auto;
+}
+</style>
