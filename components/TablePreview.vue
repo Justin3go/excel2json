@@ -44,7 +44,7 @@ const colLength = computed(() => {
 	return props.tableData[0] ? Object.keys(props.tableData[0]).length : 0;
 });
 const headers = computed(() =>
-	Array.from({ length: colLength.value }, (_, i) => `excel2json_key_${i}`)
+	Array.from({ length: colLength.value - 1 }, (_, i) => `excel2json_key_${i + 1}`)
 );
 
 const scrollToPreview = () => {
