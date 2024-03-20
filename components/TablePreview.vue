@@ -1,25 +1,31 @@
 <template>
-	<div class="d-flex justify-center mb-8">
+	<div class="d-flex justify-center">
 		<div>
 			<div class="d-flex justify-center my-4">
 				<v-btn class="text-capitalize" @click="scrollToPreview">Preview</v-btn>
 			</div>
-			<div style="max-width: 100vw;">
-				<vxe-table
-					class="mytable-style"
-					border
-					show-footer
-					ref="tableRef"
-					align="center"
-					:print-config="{}"
-					:export-config="{}"
-					:column-config="{ resizable: true, width: 90 }"
-					:merge-cells="props.mergeCells"
-					:data="props.tableData"
-				>
-					<vxe-column v-for="col in headers" :field="col" :title="col" />
-				</vxe-table>
-			</div>
+      <div style="min-height: 100vh;">
+        <div class="d-flex justify-center">
+          <v-switch v-model="isShowHeader" label="Show Header" inset></v-switch>
+        </div>
+        <div style="max-width: 100vw;">
+          <vxe-table
+            border
+            show-footer
+            ref="tableRef"
+            align="center"
+            empty-text="no data"
+            :showHeader="isShowHeader"
+            :print-config="{}"
+            :export-config="{}"
+            :column-config="{ resizable: true, width: 90 }"
+            :merge-cells="props.mergeCells"
+            :data="props.tableData"
+          >
+            <vxe-column v-for="col in headers" :field="col" :title="col" />
+          </vxe-table>
+        </div>
+      </div>
 		</div>
 	</div>
 </template>
@@ -46,10 +52,11 @@ const colLength = computed(() => {
 const headers = computed(() =>
 	Array.from({ length: colLength.value - 1 }, (_, i) => `excel2json_key_${i + 1}`)
 );
+const isShowHeader = ref(false)
 
 const scrollToPreview = () => {
 	window.scrollTo({
-		top: window.innerHeight,
+		top: window.innerHeight + 20,
 		behavior: "smooth",
 	});
 };
