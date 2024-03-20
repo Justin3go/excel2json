@@ -2,7 +2,7 @@
 	<div>
 		<header>
 			<div class="text-h4 text-center my-6">
-				Converting Excel to Front-end JSON Configuration Code (<a href="https://bug404.dev/demo.gif">Usage</a>)
+				Converting Excel to Front-end JSON Configuration Code (<a href="https://bug404.dev/demo.gif" target="_blank">Usage</a>)
 			</div>
 		</header>
 		<v-file-input
