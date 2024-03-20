@@ -55,7 +55,7 @@
 				</v-sheet>
 			</div>
 		</div>
-		<table-preview :mergeCells="mergeResult" :tableData="tableResult"></table-preview>
+		<table-preview :mergeCells="mergeResult" :tableData="tableResultCopy"></table-preview>
 	</div>
 </template>
 
@@ -67,6 +67,7 @@ import "vue-json-pretty/lib/styles.css";
 const file = ref();
 const mergeResult = ref();
 const tableResult = ref();
+const tableResultCopy = ref(); // 子组件会操作数据，影响父组件的展示，所以需要一个副本
 const workbook = new Excel.Workbook();
 
 useSeoMeta({
@@ -87,7 +88,9 @@ watch(file, async (newVal) => {
 		// @ts-ignore
 		mergeResult.value = convertMergeFormat(worksheet._merges);
 		// @ts-ignore
-		tableResult.value = convertTableFormat(worksheet._rows);
+		const data = convertTableFormat(worksheet._rows);
+		tableResult.value = data;
+		tableResultCopy.value = JSON.parse(JSON.stringify(data));
 	});
 });
 
