@@ -15,7 +15,8 @@
     "nuxt": "^3.11.1",
     "vue": "^3.4.21",
     "vue-json-pretty": "^2.3.0",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vxe-table": "^4.5.21"
   },
   "devDependencies": {
     "typescript": "^5.4.2",

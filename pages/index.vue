@@ -55,6 +55,7 @@
 				</v-sheet>
 			</div>
 		</div>
+		<table-preview :mergeCells="mergeResult" :tableData="tableResult"></table-preview>
 	</div>
 </template>
 
