@@ -1,8 +1,13 @@
 <template>
 	<div>
+		<header>
+			<div class="text-h4 text-center my-6">
+				Converting Excel to Front-end JSON Configuration Code
+			</div>
+		</header>
 		<v-file-input
 			v-model="file"
-			class="mt-8 mx-12"
+			class="mx-12"
 			chips
 			label="upload your excel file"
 			placeholder="Upload your documents"
@@ -11,12 +16,44 @@
 		>
 		</v-file-input>
 		<div class="d-flex">
-			<v-sheet class="scrollable" height="80vh" width="50vw" border>
-				<vue-json-pretty :data="mergeResult" showIcon showLineNumber showLength></vue-json-pretty>
-			</v-sheet>
-			<v-sheet class="scrollable" height="80vh" width="50vw" border>
-				<vue-json-pretty :data="tableResult" showIcon showLineNumber showLength></vue-json-pretty>
-			</v-sheet>
+			<div style="width: 50vw;">
+				<div class="d-flex justify-space-between">
+					<span class='text-h6'>Merge Cells</span>
+          <v-snackbar :timeout="2000">
+            <template #activator="{ props }">
+              <v-btn v-bind="props" class="text-capitalize" variant="plain" color="primary" @click="copyText(JSON.stringify(mergeResult))">copy</v-btn>
+            </template>
+            copied to clipboard.
+          </v-snackbar>
+				</div>
+				<v-sheet class="scrollable" height="80vh" width="100%" border>
+					<vue-json-pretty
+						:data="mergeResult"
+						showIcon
+						showLineNumber
+						showLength
+					></vue-json-pretty>
+				</v-sheet>
+			</div>
+			<div style="width: 50vw;">
+				<div class="d-flex justify-space-between">
+					<span class='text-h6'>Table Data</span>
+          <v-snackbar :timeout="2000">
+            <template #activator="{ props }">
+              <v-btn v-bind="props" class="text-capitalize" variant="plain" color="primary" @click="copyText(JSON.stringify(tableResult))">copy</v-btn>
+            </template>
+            copied to clipboard.
+          </v-snackbar>
+				</div>
+				<v-sheet class="scrollable" height="80vh" width="100%" border>
+					<vue-json-pretty
+						:data="tableResult"
+						showIcon
+						showLineNumber
+						showLength
+					></vue-json-pretty>
+				</v-sheet>
+			</div>
 		</div>
 	</div>
 </template>
@@ -32,7 +69,7 @@ const tableResult = ref();
 const workbook = new Excel.Workbook();
 
 watch(file, async (newVal) => {
-	if (!newVal) {
+	if (!newVal && !newVal[0]) {
 		mergeResult.value = null;
 		return;
 	}
