@@ -2,6 +2,6 @@
 
 This is a simple tool to convert an Excel file to a JSON file.
 
-## Setup
+## Usage
 
-TODO
+![Usage](https://bug404.dev/demo.gif)
