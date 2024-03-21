@@ -12,11 +12,14 @@
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "exceljs": "^4.4.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "nuxt": "^3.11.1",
     "vue": "^3.4.21",
     "vue-json-pretty": "^2.3.0",
     "vue-router": "^4.3.0",
-    "vxe-table": "^4.5.21"
+    "vxe-table": "^4.5.21",
+    "vxe-table-plugin-export-xlsx": "^4.0.1"
   },
   "devDependencies": {
     "typescript": "^5.4.2",
