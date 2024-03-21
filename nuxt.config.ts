@@ -4,7 +4,7 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'Excel2json Tool',
+      title: 'Excel2Json Tool',
       link: [
         { rel: 'icon', type: 'image/png', href: '/logo.png' }
       ],

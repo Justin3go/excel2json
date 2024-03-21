@@ -71,9 +71,9 @@ const tableResultCopy = ref(); // 子组件会操作数据，影响父组件的�
 const workbook = new Excel.Workbook();
 
 useSeoMeta({
-	ogTitle: "Excel2json Tool",
+	ogTitle: "Excel2Json Tool",
 	ogDescription: `Converting Excel to Front-end JSON Configuration Code`,
-	ogImage: "https://bug404.dev/logo.jpg",
+	ogImage: "https://bug404.dev/logo.png",
 	twitterCard: "summary",
 });
 
